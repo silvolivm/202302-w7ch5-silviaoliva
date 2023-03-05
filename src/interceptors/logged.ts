@@ -16,7 +16,7 @@ export function logged(req: RequestPlus, resp: Response, next: NextFunction) {
     if (!authHeader.startsWith('Bearer'))
       throw new HTTPError(498, 'Token invalid', 'Not Bearer in auth header');
     const token = authHeader.slice(7);
-    const payload = Auth.verifyJWTGettingPayload(token);
+    const payload = Auth.verifyJWT(token);
     req.info = payload;
     next();
   } catch (error) {
